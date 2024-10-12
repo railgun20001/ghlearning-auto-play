@@ -78,7 +78,9 @@ async function play() {
 function reset() {
   if (!myClassCourseRPList[index1]) {
     console.log('没有更多视频了')
-    process.exit()
+    index1 = 0
+    index2 = 0
+    reset()
     return
   }
   if (!myClassCourseRPList[index1].videoRPs[index2]) {
