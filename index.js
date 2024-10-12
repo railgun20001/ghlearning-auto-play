@@ -4,11 +4,11 @@ import './Math.uuid.js'
 
 let playduration
 let pid
-let index1 = 5
+let index1 = 0
 let index2 = 0
 
 const headers = {
-  Cookie: 'client_id=33400503; cmsloginCookie=CQmCrlD9Wy/asWRmEQ1ZLTVu6o0l7cuR^security:Hb/qnGMYVC0f0tml2BJpJw==^1; JSESSIONID=38AB81C4C772D740D54AA8FDF099FACA; SL_G_WPT_TO=zh-CN; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1',
+  Cookie: 'client_id=33400503; cmsloginCookie=CQmCrlD9Wy/asWRmEQ1ZLTVu6o0l7cuR^security:Hb/qnGMYVC0f0tml2BJpJw==^1; JSESSIONID=2777D29DF223D9D4158BAEA327E427E1; SL_G_WPT_TO=zh-CN; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1',
   Accountid: 'd4494ad1-912e-41b6-9f9a-545e58dc9ce7',
   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
   Host: 'hnzj.user.ghlearning.com',
@@ -25,8 +25,10 @@ reset()
 
 async function play() {
   if (!myClassCourseRPList[index1]) {
-    console.log('没有更多视频了')
-    process.exit()
+    console.log('没有更多视频了，重新开始')
+    index1 = 0
+    index2 = 0
+    reset()
     return
   }
   if (!myClassCourseRPList[index1].videoRPs[index2]) {
@@ -67,7 +69,8 @@ async function play() {
       playduration = playduration + 20
       play()
     }, 20000);
-  }).catch(() => {
+  }).catch((error) => {
+    console.log('cv.gson error', error, index1, index2);
     play()
   })
 }
