@@ -2,23 +2,30 @@ import axios from 'axios'
 import myClassCourseRPList from './data.js'
 import './Math.uuid.js'
 
+const vid = "302626008"
+const myClassId = '141cc347-8951-4a23-97f7-3b1890b9804f'
+const Cookie = 'JSESSIONID=FB83E216EB7DB182C350F7C2DB836D63; _ga=GA1.2.442463737.1761272129; _gid=GA1.2.388297229.1761272129; _ga_HJLQ16ZMWG=GS2.1.s1761272128$o1$g1$t1761272298$j60$l0$h0; client_id=72350559'
+const Accountid = '7843f792-6882-4e62-ad8f-6223de7cf075'
+
 let playduration
 let pid
 let index1 = 0
 let index2 = 0
 
 const headers = {
-  Cookie: 'client_id=33400503; cmsloginCookie=CQmCrlD9Wy/asWRmEQ1ZLTVu6o0l7cuR^security:Hb/qnGMYVC0f0tml2BJpJw==^1; JSESSIONID=2777D29DF223D9D4158BAEA327E427E1; SL_G_WPT_TO=zh-CN; SL_GWPT_Show_Hide_tmp=1; SL_wptGlobTipTmp=1',
-  Accountid: 'd4494ad1-912e-41b6-9f9a-545e58dc9ce7',
-  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36',
+  Cookie: Cookie,
+  Accountid: Accountid,
+  'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/141.0.0.0 Safari/537.36',
   Host: 'hnzj.user.ghlearning.com',
   Origin: 'https://hnzj.user.ghlearning.com',
-  Referer: 'https://hnzj.user.ghlearning.com/learning/index?myClassId=77315508-6bbb-4b64-8747-9f8bb316ae21',
-  'Sec-Ch-Ua': '"Google Chrome";v="129", "Not=A?Brand";v="8", "Chromium";v="129"',
+  Referer: `https://hnzj.user.ghlearning.com/learning/index?myClassId=${myClassId}`,
+  'Content-Type': 'application/x-www-form-urlencoded',
+  'Sec-Ch-Ua': '"Google Chrome";v="141", "Not?A_Brand";v="8", "Chromium";v="141"',
   'Sec-Ch-Ua-Mobile': '?0',
   'Sec-Ch-Ua-Platform': '"Windows"',
   'Sec-Fetch-Dest': 'empty',
-  'Content-Type': 'application/x-www-form-urlencoded'
+  'Sec-Fetch-Mode': 'cors',
+  'Sec-Fetch-Site': 'same-origin',
 }
 
 reset()
@@ -39,9 +46,9 @@ async function play() {
     return
   }
 
-  const watchInfo = { "vid": "206920462", "pid": pid, "playduration": playduration, "timestamp": new Date().valueOf() }
+  const watchInfo = { "vid": vid, "pid": pid, "playduration": playduration, "timestamp": new Date().valueOf() }
   const data = {
-    myClassId: '77315508-6bbb-4b64-8747-9f8bb316ae21',
+    myClassId: myClassId,
     myClassCourseId: myClassCourseRPList[index1].myClassCourseId,
     myClassCourseVideoId: myClassCourseRPList[index1].videoRPs[index2].myClassCourseVideoId,
     watchInfo: JSON.stringify(watchInfo),
@@ -93,9 +100,9 @@ function reset() {
   console.log('重置')
   playduration = 0
   pid = "BAIJIAYUN_" + Math.uuid().replace(/-/g, "")
-  const watchInfo = { "vid": "206920462", "pid": pid, "playduration": playduration, "timestamp": new Date().valueOf() }
+  const watchInfo = { "vid": vid, "pid": pid, "playduration": playduration, "timestamp": new Date().valueOf() }
   const data = {
-    myClassId: '77315508-6bbb-4b64-8747-9f8bb316ae21',
+    myClassId: myClassId,
     myClassCourseId: myClassCourseRPList[index1].myClassCourseId,
     myClassCourseVideoId: myClassCourseRPList[index1].videoRPs[index2].myClassCourseVideoId,
     watchInfo: JSON.stringify(watchInfo),
